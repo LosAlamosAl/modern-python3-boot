@@ -30,7 +30,7 @@ Start on June 17, 2019.
 (setq org-babel-python-command "python2.7")
 #+end_src
 
-#+BEGIN_SRC python :var table=hours-charged :results output
+#+BEGIN_SRC python :var table=hours-charged :results output :exports both
 #  To execute: hit ^C^C with the point anywhere in this code.
 from datetime import datetime
 tally = {}
