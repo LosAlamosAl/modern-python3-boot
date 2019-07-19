@@ -1,0 +1,65 @@
+#+TITLE: Modern Python 3 Bootcamp Exercises
+#+AUTHOR: Allen McPherson
+#+EMAIL: al@losalamosal.me
+
+* Track my work
+
+Start on June 17, 2019.
+
+(Use C-c . to insert date, <RET> to insert new row, then tab through fields)
+
+** Daily Hours
+
+#+TBLNAME: hours-charged
+| Date             | Hours | Cum. Hours | Cum. Days |
+|------------------+-------+------------+-----------|
+| <2019-06-17 Mon> |     5 |          5 |         1 |
+| <2019-06-19 Wed> |     5 |         10 |         2 |
+| <2019-06-21 Fri> |     5 |         15 |         3 |
+| <2019-06-24 Mon> |     3 |         18 |         4 |
+| <2019-06-26 Wed> |     6 |         24 |         5 |
+| <2019-06-28 Fri> |     5 |         29 |         6 |
+| <2019-07-02 Tue> |     7 |         36 |         7 |
+| <2019-07-05 Fri> |     5 |         41 |         8 |
+| <2019-07-08 Mon> |     6 |         47 |         9 |
+| <2019-07-17 Wed> |     6 |         53 |        10 |
+| <2019-07-18 Thu> |     6 |         59 |        11 |
+#+TBLFM: $3=vsum(@I$2..$2)::$4=vlen(@I$4..0);EN
+
+#+begin_src emacs-lisp :results none
+(setq org-babel-python-command "python2.7")
+#+end_src
+
+#+BEGIN_SRC python :var table=hours-charged :results output
+#  To execute: hit ^C^C with the point anywhere in this code.
+from datetime import datetime
+tally = {}
+tl = len(table)
+print "Hours by month"
+print "-------"
+for i in range(0, tl):
+    yearmo = table[i][0][1:8]
+    day    = table[i][0][9:11]
+    hrs    = table[i][1]
+    if yearmo in tally:
+        tally[yearmo] += hrs
+    if yearmo not in tally:
+        tally[yearmo] = hrs
+running = []
+for key in sorted(tally.iterkeys()):
+    running.append([key, tally[key], tally[key]])
+for j in range(0, len(running)):
+    backix = j - 11
+    if backix < 0:
+        backix = 0
+    for k in range(backix, j):
+        running[j][2] += running[k][1]
+    print "%s --- mo: %3d   yr: %3d" % (running[j][0], running[j][1], running[j][2])
+#+END_SRC
+
+#+RESULTS:
+: Hours by month
+: -------
+: 2019-06 --- mo:  29   yr:  29
+: 2019-07 --- mo:  30   yr:  59
+
