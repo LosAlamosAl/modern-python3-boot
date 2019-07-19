@@ -14,11 +14,11 @@ Blah.
 
 To execute: hit ^C^C with the point anywhere in this code.
 
-*** `reverse_string`
+*** reverse_stringy
 
 #+BEGIN_SRC python :results output :exports both
 '''
-Write a function called `reverse_string` which accepts a string and returns a
+Write a function called reverse_string which accepts a string and returns a
 new string with all the characters reversed.
 
 reverse_string('awesome') # 'emosewa'
@@ -32,5 +32,20 @@ def reverse_string():
     pass
 #+END_SRC
 
-#+RESULTS:
+*** list_check
+
+#+BEGIN_SRC python :results output :exports both
+'''
+Write a function called list_check which accepts a list and returns True
+if each value in the list is a list. Otherwise the function should return
+false.
+
+list_check([[],[1],[2,3], (1,2)]) # False
+list_check([1, True, [],[1],[2,3]]) # False
+list_check([[],[1],[2,3]]) # True
+'''
+
+def list_check():
+    pass
+#+END_SRC
 
