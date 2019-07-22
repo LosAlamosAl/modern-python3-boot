@@ -1,3 +1,4 @@
+# -*- org-confirm-babel-evaluate: nil -*-
 #+TITLE: Modern Python 3 Bootcamp Exercises
 #+AUTHOR: Allen McPherson
 #+EMAIL: al@losalamosal.me
@@ -27,10 +28,19 @@ reverse_string('Elie') # 'eilE'
 '''
 
 # add whatever parameters you deem necessary - good luck!
-def reverse_string():
-    # implement your function here
-    pass
+def reverse_string(s):
+    return s[::-1]
+
+print(reverse_string('awesome'))
+print(reverse_string('Colt'))
+print(reverse_string('Elie'))
+
 #+END_SRC
+
+#+RESULTS:
+: emosewa
+: tloC
+: eilE
 
 *** list_check
 
