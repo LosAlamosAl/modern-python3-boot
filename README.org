@@ -57,7 +57,7 @@ list_check([[],[1],[2,3]]) # True
 from functools import reduce
 
 def list_check(l):
-    return reduce(lambda x,y: x and y, list(map(lambda x: type(x) is list, l)))
+    return reduce(lambda x,y: x and y, [type(x) is list for x in l])
 
 print(list_check([[],[1],[2,3], (1,2)]))
 print(list_check([1, True, [],[1],[2,3]]))
